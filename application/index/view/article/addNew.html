@@ -1,0 +1,16 @@
+{extend name="layout/layout" /}
+{block name="title"}添加新主题 - v2ex{/block}
+{block name="main"}
+<table>
+    <form method="post" action="/doAdd">
+    标题：<input type="text" name="title"><br/>
+    正文：<input type="text" name="content"><br/>
+    请选择一个节点:<select name="category">
+        {volist name='categories' id='category'}
+        <option  value ="{$category.id}">{$category.name}</option>
+        {/volist}
+    </select><br/>
+        <input type="submit">
+    </form>
+</table>
+{/block}

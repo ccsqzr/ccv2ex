@@ -1,0 +1,27 @@
+{extend name="layout/layout" /}
+{block name="title"}分类:{$category.name} - v2ex{/block}
+{block name="main"}
+<div class="box">
+    {volist name='articles' id='article'}
+    <div class="cell item" style="">
+        <table cellpadding="0" cellspacing="0" border="0" width="100%">
+            <tr>
+                <td width="48" valign="top" align="center"><a href="/member/whx20202"><img
+                        src="{$article.author.avatar}"
+                        class="avatar" border="0" align="default"/></a></td>
+                <td width="10"></td>
+                <td width="auto" valign="middle"><span class="item_title"><a href="/t/{$article.id}">{$article.title}</a></span>
+                    <div class="sep5"></div>
+                    <span class="small fade"><div class="votes"></div><a class="node"
+                                                                         href="/go/{$article.category.id}">{$article.category.name}</a> &nbsp;•&nbsp; <strong><a
+                            href="/member/whx20202">{$article.author.username}</a></strong> &nbsp;•&nbsp; {$article.create_date} &nbsp;</span>
+                </td>
+                <td width="70" align="right" valign="middle">
+                    <a href="/t/343067" class="count_livid">0</a>
+                </td>
+            </tr>
+        </table>
+    </div>
+    {/volist}
+</div>
+{/block}

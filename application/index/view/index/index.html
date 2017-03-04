@@ -1,0 +1,63 @@
+{extend name="layout/layout" /}
+{block name="title"}首页 - v2ex{/block}
+{block name="main"}
+<div class="box">
+    {volist name='articles' id='article'}
+    <div class="cell item" style="">
+        <table cellpadding="0" cellspacing="0" border="0" width="100%">
+            <tr>
+                <td width="48" valign="top" align="center"><a href="/member/whx20202"><img
+                        src="{$article.author.avatar}"
+                        class="avatar" border="0" align="default"/></a></td>
+                <td width="10"></td>
+                <td width="auto" valign="middle"><span class="item_title"><a href="/t/{$article.id}">{$article.title}</a></span>
+                    <div class="sep5"></div>
+                    <span class="small fade"><div class="votes"></div><a class="node"
+                                                                         href="/go/{$article.category.id}">{$article.category.name}</a> &nbsp;•&nbsp; <strong><a
+                            href="/member/whx20202">{$article.author.username}</a></strong> &nbsp;•&nbsp; {$article.create_date} &nbsp;•&nbsp; {$article.visit}次点击 &nbsp;</span>
+                </td>
+                <td width="70" align="right" valign="middle">
+                    <a href="/t/343067" class="count_livid">{$article.comment}</a>
+                </td>
+            </tr>
+        </table>
+    </div>
+    {/volist}
+    <div class="cell">
+        <table cellpadding="0" cellspacing="0" border="0" width="100%">
+            <tbody>
+            <tr>
+                <td width="92%" align="left">
+                    <!--<a href="/go/programmer?p=1" class="page_current">1</a>
+                    <a href="/go/programmer?p=2" class="page_normal">2</a> &nbsp;
+                    <a href="/go/programmer?p=3" class="page_normal">3</a> &nbsp;
+                    <a href="/go/programmer?p=4" class="page_normal">4</a> &nbsp;-->
+                    {$pageRender}
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+<div class="sep20"></div>
+<div class="box">
+    <div class="cell">
+        <div class="fr"></div>
+        <span class="fade"><strong>V2EX</strong> / 节点导航</span></div>
+    {volist name='categories' id='category'}
+    <div class="cell">
+        <table cellpadding="0" cellspacing="0" border="0">
+            <tr>
+                <td align="right" width="60"><span class="fade">{$category.total}</span></td>
+                <td style="line-height: 200%; padding-left: 10px; word-break: keep-all;">
+                    {volist name='category.category' id='subCategory'}
+                    <a href="/go/{$subCategory.id}" style="font-size: 14px;">{$subCategory.name}</a>&nbsp;&nbsp;
+                    {/volist}
+                </td>
+            </tr>
+        </table>
+    </div>
+    {/volist}
+
+</div>
+{/block}
