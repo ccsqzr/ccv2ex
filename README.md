@@ -10,3 +10,7 @@
 * 点击量评论数的统计
 
 ## 项目截图
+![首页](https://github.com/ccsqzr/ccv2ex/raw/master/image/1.PNG)
+
+![文章详情页](https://github.com/ccsqzr/ccv2ex/raw/master/image/5.PNG)
+
