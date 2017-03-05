@@ -8,6 +8,7 @@
 * 发帖
 * 回复
 * 点击量评论数的统计
+* 社区统计(总发帖数、回复量、用户量 通过redis缓存)
 
 ## 项目截图
 ![首页](https://github.com/ccsqzr/ccv2ex/raw/master/image/1.PNG)
