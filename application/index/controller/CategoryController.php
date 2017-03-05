@@ -12,7 +12,7 @@ use app\index\model\Article;
 use app\index\model\Category;
 use think\Controller;
 
-class CategoryController extends Controller
+class CategoryController extends BaseController
 {
     //通过分类名，获得该分类下的全部文章
     public function detail($categoryId)

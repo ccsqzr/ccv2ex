@@ -10,10 +10,11 @@ namespace app\index\controller;
 
 use app\index\model\Article;
 use app\index\model\Comment;
+use Redis;
 use think\Controller;
 use think\Request;
 
-class CommentController extends Controller
+class CommentController extends BaseController
 {
     //新增评论
     public function add(Request $request)
@@ -33,6 +34,9 @@ class CommentController extends Controller
         $newCommentNumber=$articleCommentNumber+1;
         Article::where("id",$articleId)
             ->update(['comment'=>"$newCommentNumber"]);
+        $redis = new Redis();
+        $redis->connect('127.0.0.1', 6379);
+        $redis->hDel("statistics","commentCount");
         $this->redirect('/t/'.$articleId);
     }
 

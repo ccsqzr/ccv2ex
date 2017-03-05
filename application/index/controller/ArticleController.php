@@ -9,21 +9,36 @@
 namespace app\index\controller;
 
 use app\index\model\Article;
+use app\index\model\ArticleVisit;
 use app\index\model\Category;
 use app\index\model\Comment;
-use think\Controller;
+use Redis;
 use think\Session;
 
-class ArticleController extends Controller
+class ArticleController extends BaseController
 {
     //通过文章ID，获取该ID下的文章详情
     public function detail($articleId)
     {
         $article = Article::get($articleId, ['category', 'author']);
-        Article::update(['visit' => $article->visit + 1],["id" => $articleId]);
+        if (Session::has("user")) {
+            $visitCount = ArticleVisit::where(["user" => Session::get("user")->id, "article" => $articleId])->count();
+            if ($visitCount < 1) {
+                // 此人没访问过
+                Article::update(['visit' => $article->visit + 1], ["id" => $articleId]);
+                $articleVisit = new ArticleVisit();
+                $articleVisit->user = Session::get("user")->id;
+                $articleVisit->article = $articleId;
+                $articleVisit->date = date('Y-m-d H:i:s', time());
+                $articleVisit->save();
+            }
+
+        }
         $comments = Comment::all(['article' => $articleId], ['user']);
         $this->assign("article", $article);
         $this->assign("comments", $comments);
+
+
         return $this->fetch();
     }
 
@@ -65,6 +80,9 @@ class ArticleController extends Controller
         $article->category = $category;
         $article->author = $authorId;
         $article->save();
+        $redis = new Redis();
+        $redis->connect('127.0.0.1', 6379);
+        $redis->hDel("statistics","articleCount");
         $this->success("新增成功", "/");
     }
 }

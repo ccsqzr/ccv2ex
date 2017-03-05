@@ -3,10 +3,9 @@ namespace app\index\controller;
 
 use app\index\model\Article;
 use app\index\model\Category_category;
-use think\Controller;
 use think\Session;
 
-class IndexController extends Controller
+class IndexController extends BaseController
 {
     //社区首页
     public function index()
