@@ -11,8 +11,9 @@ namespace app\index\controller;
 use app\index\model\Article;
 use app\index\model\Comment;
 use Redis;
-use think\Controller;
 use think\Request;
+use think\Session;
+
 
 class CommentController extends BaseController
 {
@@ -22,18 +23,19 @@ class CommentController extends BaseController
         $articleId = $request->param('articleId');
         $content = $request->param('content');
         $currentNumber = Comment::where("article", $articleId)->max('number');
+        $user = Session::get('user')->id;
         $comment = new Comment();
         $comment->article = $articleId;
         $comment->content = $content;
         $comment->create_date = date('Y-m-d H:i:s',time());
-        $comment->user = 1;
+        $comment->user = $user;
         $comment->number = $currentNumber + 1;
         $articleCommentNumber = Article::where("id", $articleId)->find()->comment;
         //新的评论存入到comment表中
         $comment->save();
         $newCommentNumber=$articleCommentNumber+1;
         Article::where("id",$articleId)
-            ->update(['comment'=>"$newCommentNumber"]);
+            ->update(['comment' => "$newCommentNumber", 'last_reply' => "$user"]);
         $redis = new Redis();
         $redis->connect('127.0.0.1', 6379);
         $redis->hDel("statistics","commentCount");

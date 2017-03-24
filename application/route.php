@@ -22,9 +22,10 @@ return [
     'comment/add' => 'index/comment/add',
     'signin' => 'index/auth/signin',
     'doSignin' => 'index/auth/doSignin',
- 'dropOut' => 'index/auth/dropOut',
+    'dropOut' => 'index/auth/dropOut',
     'signUp' => 'index/auth/signUp',
     'doSignUp' => 'index/auth/doSignUp',
     'addNew' => 'index/article/addNew',
-    'doAdd' => 'index/article/doAdd'
+    'doAdd' => 'index/article/doAdd',
+    'member/:userId' => 'index/index/member'
 ];

@@ -3,14 +3,15 @@
 {block name="main"}
 <div class="box" style="border-bottom: 0px;">
     <div class="header">
-        <div class="fr"><a href="/member/nilai"><img
+        <div class="fr"><a href="/member/{$article.author.id}"><img
                 src="{$article.author.avatar}"
                 class="avatar" border="0" align="default" style="min-width: 73px;"></a></div>
         <a href="/">V2EX</a> <span class="chevron">&nbsp;›&nbsp;</span> <a
             href="#">{$article.category.name}</a>
         <div class="sep10"></div>
         <h1>{$article.title}</h1>
-        <small class="gray"><a href="#">{$article.author.username}</a> · {$article.create_date} ·
+        <small class="gray"><a href="/member/{$article.author.id}">{$article.author.username}</a> ·
+            {$article.create_date} ·
             {$article.visit} 次点击 &nbsp; </small>
     </div>
 
@@ -37,7 +38,8 @@
                         <div id="thank_area_4091610" class="thank_area">&nbsp; &nbsp; &nbsp; </div>
                         &nbsp;&nbsp; <span class="no">{$comment.number}</span></div>
                     <div class="sep3"></div>
-                    <strong><a href="#" class="dark">{$comment.user.username}</a></strong>&nbsp; &nbsp;<span
+                    <strong><a href="/member/{$comment.user.id}" class="dark">{$comment.user.username}</a></strong>&nbsp;
+                    &nbsp;<span
                         class="fade small">{$comment.create_date}</span>
                     <div class="sep5"></div>
                     <div class="reply_content" style="white-space: pre-wrap;">{$comment.content}</div>

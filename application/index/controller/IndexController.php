@@ -22,5 +22,10 @@ class IndexController extends BaseController
         return $this->fetch();
     }
 
+    public function member($userId)
+    {
+        return $this->fetch();
+    }
+
 }
 
