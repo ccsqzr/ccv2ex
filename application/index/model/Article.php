@@ -21,4 +21,14 @@ class Article extends Model
     {
         return $this->belongsTo('User','author');
     }
+
+    public function lastReply()
+    {
+        return $this->belongsTo('User', 'last_reply');
+    }
+
+    public function comment()
+    {
+        return $this->hasmany('comment', 'article');
+    }
 }
