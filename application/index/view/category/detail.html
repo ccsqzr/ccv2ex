@@ -2,6 +2,22 @@
 {block name="title"}分类:{$category.name} - v2ex{/block}
 {block name="main"}
 <div class="box">
+    <div class="header">
+        <div style="float: left; display: inline-block; margin-right: 10px; margin-bottom: initial!important;"><img
+                src="//v2ex.assets.uxengine.net/navatar/c74d/97b0/16_xxlarge.png?m=1490423426" border="0"
+                align="default" width="72"></div>
+        <div class="fr f12"><span class="snow">主题总数</span> <strong class="gray">{$count}</strong> <span class="snow">&nbsp;•&nbsp;</span>
+            {if condition="$isCollection"}
+            <a href="#">取消收藏</a>
+            {else /}
+            <a href="#">加入收藏</a>
+            {/if}
+        </div>
+        <a href="/">V2EX</a> <span class="chevron">&nbsp;›&nbsp;</span> 分享发现
+        <div class="sep10"></div>
+        <div class="sep10"></div>
+        <input type="button" class="super normal button" value="创建新主题" onclick="location.href = '/new/share';">
+    </div>
     {volist name='articles' id='article'}
     <div class="cell item" style="">
         <table cellpadding="0" cellspacing="0" border="0" width="100%">
@@ -10,7 +26,8 @@
                         src="{$article.author.avatar}"
                         class="avatar" border="0" align="default"/></a></td>
                 <td width="10"></td>
-                <td width="auto" valign="middle"><span class="item_title"><a href="/t/{$article.id}">{$article.title}</a></span>
+                <td width="auto" valign="middle"><span class="item_title"><a
+                        href="/t/{$article.id}">{$article.title}</a></span>
                     <div class="sep5"></div>
                     <span class="small fade"><div class="votes"></div><a class="node"
                                                                          href="/go/{$article.category.id}">{$article.category.name}</a> &nbsp;•&nbsp; <strong><a

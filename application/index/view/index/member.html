@@ -78,26 +78,24 @@
                 <tr>
                     <td style="padding: 10px 15px 8px 15px; font-size: 12px; text-align: left;">
                         <div class="fr"><span class="fade">{$comment.create_date}</span></div>
-                        <span class="gray">回复了 <a href="/member/{$comment.article.author.username}">{$comment.article.author.username}</a> 创建的主题 <span
-                                class="chevron">›</span> <a href="/go/{$comment.article.category.id}">{$comment.article.category.name}</a> <span
-                                class="chevron">›</span> <a href="/t/{$comment.article.id}">{$comment.article.title}</a></span>
+                        <span class="gray">回复了 <a href="/member/{$comment.username}">{$comment.username}</a> 创建的主题
+                            <span class="chevron">></span> <a
+                                    href="/go/{$comment.categoryId}">{$comment.categoryName}</a> <span
+                                    class="chevron">›</span> <a
+                                    href="/t/{$comment.id}">{$comment.articleTitle}</a></span>
                     </td>
-                </tr>
-                <tr>
-                    <td align="left"><img src="/static/img/arrow.png" style="margin-left: 20px;">{$comment.content}</td>
                 </tr>
                 </tbody>
             </table>
         </div>
-        {/volist}
+
         <div class="cell">
-            <div class="reply_content">说的那么吓人...</div>
+            <div class="reply_content">{$comment.content}</div>
         </div>
+        {/volist}
 
-
-        <div class="inner"><span class="chevron">»</span> <a href="/member/letitbesqzr/replies">letitbesqzr 创建的更多回复</a>
+        <div class="inner"><span class="chevron">»</span> <a href="/member/{$user.username}">{$user.username}创建的更多回复</a>
         </div>
-
     </div>
 
 </div>

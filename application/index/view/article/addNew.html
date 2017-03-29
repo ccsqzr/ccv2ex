@@ -1,16 +1,41 @@
 {extend name="layout/layout" /}
 {block name="title"}添加新主题 - v2ex{/block}
 {block name="main"}
-<table>
-    <form method="post" action="/doAdd">
-    标题：<input type="text" name="title"><br/>
-    正文：<input type="text" name="content"><br/>
-    请选择一个节点:<select name="category">
-        {volist name='categories' id='category'}
-        <option  value ="{$category.id}">{$category.name}</option>
-        {/volist}
-    </select><br/>
-        <input type="submit">
+<div class="box" id="box">
+    <div class="cell"><a href="/">V2EX</a> <span class="chevron">&nbsp;›&nbsp;</span> 创作新主题</div>
+    <form method="post" action="/doAdd" id="compose">
+
+        <div class="cell">
+            <div class="fr fade" id="title_remaining">120</div>
+            主题标题
+        </div>
+        <div class="cell" style="padding: 0px; background-color: #fff;"><textarea class="msl" rows="1" maxlength="120"
+                                                                                  id="topic_title" name="title"
+                                                                                  autofocus="autofocus"
+                                                                                  placeholder="请输入主题标题，如果标题能够表达完整内容，则正文可以为空"></textarea>
+        </div>
+        <div class="cell">
+            <div class="fr fade" id="content_remaining">20000</div>
+            正文
+        </div>
+        <div class="cell" style="padding: 0px; background-color: #fff;">
+            <textarea class="msl" rows="10" maxlength="120" id="topic_content" name="content"
+                      autofocus="autofocus"></textarea>
+        </div>
+        <div class="cell">
+            <select name="category" id="nodes"
+                    data-placeholder="请选择一个节点">
+                {volist name='categories' id='category'}
+                <option value="{$category.id}">{$category.name}</option>
+                {/volist}
+            </select>
+        </div>
+        <div class="cell">
+            <button type="submit" class="super normal button">
+                &nbsp;发布主题
+            </button>
+        </div>
     </form>
-</table>
+
+</div>
 {/block}

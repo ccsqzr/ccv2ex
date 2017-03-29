@@ -27,5 +27,6 @@ return [
     'doSignUp' => 'index/auth/doSignUp',
     'addNew' => 'index/article/addNew',
     'doAdd' => 'index/article/doAdd',
-    'member/:userName' => 'index/index/member'
+    'member/:userName' => 'index/index/member',
+    'my/nodes' => 'index/collection/nodes'
 ];

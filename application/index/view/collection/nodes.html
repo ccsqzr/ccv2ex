@@ -1,0 +1,23 @@
+{extend name="layout/layout" /}
+{block name="title"}用户详情 - v2ex{/block}
+{block name="main"}
+<div class="box">
+    <div class="header"><a href="/">V2EX</a> <span class="chevron">&nbsp;›&nbsp;</span> 我收藏的节点
+        <div class="fr f12"><span class="snow">节点总数&nbsp;</span> <strong class="gray">{$collectionCount}</strong></div>
+    </div>
+    {volist name='collections' id='collection'}
+    <div style="text-align: left; background-color: #f9f9f9;" id="MyNodes" class="ui-sortable"><a class="grid_item"
+                                                                                                  href="/go/{$collection.category.id}"
+                                                                                                  id="n_114651">
+        <div style="display: table; padding: 20px 0px 20px 0px; width: 100%; text-align: center; font-size: 14px;"><img
+                src="//v2ex.assets.uxengine.net/navatar/c74d/97b0/16_xxlarge.png?m=1490423426" border="0"
+                align="default" width="73">
+            <div class="sep10"></div>
+            {$collection.category.name}
+            <div class="sep5"></div>
+            <span class="fade f12"><li class="fa fa-comments"></li> 21536</span></div>
+    </a></div>
+    {/volist}
+
+</div>
+{/block}
