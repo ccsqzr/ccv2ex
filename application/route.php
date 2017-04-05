@@ -28,5 +28,7 @@ return [
     'addNew' => 'index/article/addNew',
     'doAdd' => 'index/article/doAdd',
     'member/:userName' => 'index/index/member',
-    'my/nodes' => 'index/collection/nodes'
+    'my/nodes' => 'index/collection/nodes',
+    'my/topics' => 'index/collection/topics',
+    'my/following' => 'index/collection/following'
 ];

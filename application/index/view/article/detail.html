@@ -22,6 +22,18 @@
         </div>
 
     </div>
+    <div class="topic_buttons">
+        <div class="fr gray f11" style="line-height: 12px; padding-top: 3px; text-shadow: 0px 1px 0px #fff;">
+            {$article.visit} 次点击 &nbsp;∙&nbsp; {$collectionCount}人收藏 &nbsp; </div>
+        <form id="oneForm" method="post">
+            <input type="hidden" name="articleId" id="articleId" value="{$article.id}">
+            {if condition="$isCollection"}
+            <a href="#" id="deleteArticle">取消收藏</a>
+            {else /}
+            <a href="#" id="addArticle">加入收藏</a>
+            {/if}&nbsp;
+        </form>
+    </div>
 </div>
 <div class="sep20"></div>
 <div class="box">
@@ -65,4 +77,46 @@
     </div>
     {/if}
 </div>
+<script>
+    $("#deleteArticle").on("click", function () {
+        $.ajax({
+            url: "/index/collection/deleteArticle",
+            method: "post",
+            data: {
+                "articleId": $("#articleId").val(),
+            },
+            success: function (data) {
+                if (data.status == "error") {
+                    // 更新失败
+                    alert(data.message);
+                } else if (data.status == "success") {
+                    // 更新成成功
+                    window.location.href = "/t/{$article.id}";
+                } else {
+                    alert("未知错误");
+                }
+            }
+        });
+    });
+    $("#addArticle").on("click", function () {
+        $.ajax({
+            url: "/index/collection/addArticle",
+            method: "post",
+            data: {
+                "articleId": $("#articleId").val(),
+            },
+            success: function (data) {
+                if (data.status == "error") {
+                    // 更新失败
+                    alert(data.message);
+                } else if (data.status == "success") {
+                    // 更新成成功
+                    window.location.href = "/t/{$article.id}";
+                } else {
+                    alert("未知错误");
+                }
+            }
+        });
+    });
+</script>
 {/block}

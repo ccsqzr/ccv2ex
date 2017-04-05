@@ -4,6 +4,7 @@ namespace app\index\controller;
 
 use app\index\model\Article;
 use app\index\model\Category_category;
+use app\index\model\Collection;
 use app\index\model\User;
 use think\Db;
 use think\Session;
@@ -30,6 +31,9 @@ class IndexController extends BaseController
     {
         $user = User::get(['username' => $userName]);
         $author = $user{'id'};
+        $userOne = Session::get('user');
+        $userOneId = $userOne['id'];
+        $collections = Collection::all(['user' => $userOneId, 'userId' => $author]);
         $articles = Article::all(['author' => $author], ['category', 'author']);
         $comments = Db::table('cc_comment')->alias("c")
             ->field("c.content,c.id,c.create_date,a.username,ct.name as categoryName,ct.id as categoryId,at.title as articleTitle")
@@ -38,6 +42,7 @@ class IndexController extends BaseController
             ->join("cc_category ct", "ct.id = at.category")
             ->where('c.user', '=', $author)
             ->select();
+        $this->assign("isCollection", count($collections) > 0);
         $this->assign("user", $user);
         $this->assign("articles", $articles);
         $this->assign("comments", $comments);

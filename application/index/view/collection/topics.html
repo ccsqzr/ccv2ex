@@ -1,0 +1,36 @@
+{extend name="layout/layout" /}
+{block name="title"}v2ex - 我收藏的主题{/block}
+{block name="main"}
+<div class="box">
+    <div class="header"><a href="/">V2EX</a> <span class="chevron">&nbsp;›&nbsp;</span> 我收藏的主题
+        <div class="fr f12"><span class="snow">主题总数&nbsp;</span> <strong class="gray">{$articleCount}</strong></div>
+    </div>
+    {volist name='articles' id='article'}
+    <div class="cell item" style="">
+        <table cellpadding="0" cellspacing="0" border="0" width="100%">
+            <tbody>
+            <tr>
+
+                <td width="48" valign="top" align="center"><a href="/member/{$article.username}"><img
+                        src="{$article.avatar}" class="avatar" border="0" align="default"
+                        style="max-width: 48px; max-height: 48px;"></a></td>
+                <td width="10"></td>
+
+                <td width="auto" valign="middle"><span class="item_title"><a href="/t/{$article.articleId}">{$article.articleTitle}</a></span>
+                    <div class="sep5"></div>
+                    <span class="small fade"><div class="votes"></div><a class="node" href="/go/{$article.categoryId}">{$article.categoryName}</a> &nbsp;•&nbsp; <strong><a
+                            href="/member/{$article.username}">{$article.username}</a></strong> &nbsp;•&nbsp; 最后回复来自 <strong><a
+                            href="/member/{$article.lastReplyUsername}">{$article.lastReplyUsername}</a></strong></span>
+                </td>
+                <td width="70" align="right" valign="middle">
+
+                    <a href="/t/{$article.articleId}" class="count_livid">{$article.comment}</a>
+
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    {/volist}
+</div>
+{/block}

@@ -75,35 +75,70 @@
             <div class="box">
                 <div class="cell">
                     <table cellpadding="0" cellspacing="0" border="0" width="100%">
+                        <tbody>
                         <tr>
-                            <td width="48" valign="top"><a href="#"><img
-                                    src="{$Think.session.user.avatar}"
-                                    class="avatar" border="0" align="default"
-                                    style="max-width: 48px; max-height: 48px;"/></a></td>
+                            <td width="48" valign="top"><a href="/member/{$Think.session.user.username}"><img
+                                    src="{$Think.session.user.avatar}" class="avatar" border="0" align="default"
+                                    style="max-width: 48px; max-height: 48px;"></a></td>
                             <td width="10" valign="top"></td>
                             <td width="auto" align="left"><span class="bigger"><a
                                     href="/member/{$Think.session.user.username}">{$Think.session.user.username}</a></span>
+
                             </td>
                         </tr>
+                        </tbody>
                     </table>
                     <div class="sep10"></div>
-                </div>
-                <div class="cell" style="padding: 5px;">
                     <table cellpadding="0" cellspacing="0" border="0" width="100%">
+                        <tbody>
                         <tr>
-                            <td width="auto" valign="middle" align="left"><a href="/addNew">创作新主题</a></td>
+                            <td width="33%" align="center"><a href="/my/nodes" class="dark"
+                                                              style="display: block;"><span class="bigger"></span>
+                                <div class="sep3"></div>
+                                <span class="fade">节点收藏</span></a></td>
+                            <td width="34%"
+                                style="border-left: 1px solid rgba(100, 100, 100, 0.4); border-right: 1px solid rgba(100, 100, 100, 0.4);"
+                                align="center"><a href="/my/topics" class="dark" style="display: block;"><span
+                                    class="bigger"></span>
+                                <div class="sep3"></div>
+                                <span class="fade">主题收藏</span></a></td>
+                            <td width="33%" align="center"><a href="/my/following" class="dark" style="display: block;"><span
+                                    class="bigger"></span>
+                                <div class="sep3"></div>
+                                <span class="fade">特别关注</span></a></td>
                         </tr>
+                        </tbody>
                     </table>
                 </div>
+                <div class="cell">
+                    <div style="width: 250px; background-color: #f0f0f0; height: 3px; display: inline-block; vertical-align: middle;">
+                        <div style="width: 236px; background-color: #a9de62; height: 3px; display: inline-block;"></div>
+                    </div>
+                </div>
+
                 <div class="cell" style="padding: 5px;">
                     <table cellpadding="0" cellspacing="0" border="0" width="100%">
+                        <tbody>
                         <tr>
-                            <td width="auto" valign="middle" align="left"><a href="/my/nodes">我的收藏</a></td>
+                            <td width="32"><a href="/addNew"><img
+                                    src="https://www.v2ex.com/static/img/flat_compose.png?v=7d21f0767aeba06f1dec21485cf5d2f1"
+                                    width="32" border="0"></a></td>
+                            <td width="10"></td>
+                            <td width="auto" valign="middle" align="left"><a href="/addNew">创作新主题</a></td>
                         </tr>
+                        </tbody>
                     </table>
                 </div>
                 <div class="inner">
-                </div>
+                    <div class="fr" id="money"><a href="/balance" class="balance_area" style="">5 <img
+                            src="//v2ex.assets.uxengine.net/static/img/gold.png" alt="G" align="absmiddle" border="0"
+                            style="padding-bottom: 2px;"> 28 <img src="//v2ex.assets.uxengine.net/static/img/silver.png"
+                                                                  alt="S" align="absmiddle" border="0"
+                                                                  style="padding-bottom: 2px;"> 99 <img
+                            src="//v2ex.assets.uxengine.net/static/img/bronze.png" alt="B" align="absmiddle" border="0"></a>
+                    </div>
+                    <a href="/notifications" class="fade">0 条未读提醒</a></div>
+
             </div>
             {else /}
             <div class="box">

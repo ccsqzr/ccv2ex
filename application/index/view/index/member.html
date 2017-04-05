@@ -23,6 +23,16 @@
                         <div class="sep10"></div>
                         <span class="gray"><li class="fa fa-time"></li> &nbsp; V2EX 第 {$user.id} 号会员，加入于 {$user.reg_date}，今日活跃度排名 <a
                                 href="#">100</a></span>
+                        <div class="fr">
+                            <form method="post">
+                                <input type="hidden" id="superId" value="{$user.id}">
+                                {if condition="$isCollection"}
+                                <input type="button" value="取消特别关注" id="cancelSpecial">
+                                {else /}
+                                <input type="button" value="加入特别关注" id="superSpecial">
+                                {/if}
+                            </form>
+                        </div>
                     </td>
                 </tr>
                 </tbody>
@@ -99,4 +109,46 @@
     </div>
 
 </div>
+<script>
+    $("#superSpecial").on("click", function () {
+        $.ajax({
+            url: "/index/collection/addSpecial",
+            method: "post",
+            data: {
+                "superId": $("#superId").val(),
+            },
+            success: function (data) {
+                if (data.status == "error") {
+                    // 更新失败
+                    alert(data.message);
+                } else if (data.status == "success") {
+                    // 更新成成功
+                    window.location.href = "/member/{$user.username}";
+                } else {
+                    alert("未知错误");
+                }
+            }
+        });
+    });
+    $("#cancelSpecial").on("click", function () {
+        $.ajax({
+            url: "/index/collection/cancelSpecial",
+            method: "post",
+            data: {
+                "superId": $("#superId").val(),
+            },
+            success: function (data) {
+                if (data.status == "error") {
+                    // 更新失败
+                    alert(data.message);
+                } else if (data.status == "success") {
+                    // 更新成成功
+                    window.location.href = "/member/{$user.username}";
+                } else {
+                    alert("未知错误");
+                }
+            }
+        });
+    });
+</script>
 {/block}

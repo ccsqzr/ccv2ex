@@ -11,6 +11,7 @@ namespace app\index\controller;
 use app\index\model\Article;
 use app\index\model\ArticleVisit;
 use app\index\model\Category;
+use app\index\model\Collection;
 use app\index\model\Comment;
 use Redis;
 use think\Session;
@@ -32,9 +33,14 @@ class ArticleController extends BaseController
                 $articleVisit->date = date('Y-m-d H:i:s', time());
                 $articleVisit->save();
             }
-
         }
         $comments = Comment::all(['article' => $articleId], ['user']);
+        $user = Session::get('user');
+        $userId = $user['id'];
+        $collection = Collection::all(['user' => $userId, 'article' => $articleId]);
+        $collections = Collection::all(['article' => $articleId]);
+        $this->assign("collectionCount", count($collections));
+        $this->assign("isCollection", count($collection) > 0);
         $this->assign("article", $article);
         $this->assign("comments", $comments);
 

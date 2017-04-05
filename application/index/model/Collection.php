@@ -18,4 +18,14 @@ class Collection extends Model
         return $this->belongsTo('Category', 'node');
     }
 
+    public function article()
+    {
+        return $this->belongsTo('Article', 'article');
+    }
+
+    public function user()
+    {
+        return $this->belongsTo('User', 'userId');
+    }
+
 }

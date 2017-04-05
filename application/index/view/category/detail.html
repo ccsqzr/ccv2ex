@@ -7,16 +7,19 @@
                 src="//v2ex.assets.uxengine.net/navatar/c74d/97b0/16_xxlarge.png?m=1490423426" border="0"
                 align="default" width="72"></div>
         <div class="fr f12"><span class="snow">主题总数</span> <strong class="gray">{$count}</strong> <span class="snow">&nbsp;•&nbsp;</span>
-            {if condition="$isCollection"}
-            <a href="#">取消收藏</a>
-            {else /}
-            <a href="#">加入收藏</a>
-            {/if}
+            <form id="oneForm" method="post">
+                <input type="hidden" name="categoryId" id="categoryId" value="{$category.id}">
+                {if condition="$isCollection"}
+                <a href="#" id="deleteNode">取消收藏</a>
+                {else /}
+                <a href="#" id="addNode">加入收藏</a>
+                {/if}
+            </form>
         </div>
-        <a href="/">V2EX</a> <span class="chevron">&nbsp;›&nbsp;</span> 分享发现
+        <a href="/">V2EX</a> <span class="chevron">&nbsp;›&nbsp;</span> {$category.name}
         <div class="sep10"></div>
         <div class="sep10"></div>
-        <input type="button" class="super normal button" value="创建新主题" onclick="location.href = '/new/share';">
+        <input type="button" class="super normal button" value="创建新主题" onclick="location.href = '/addNew';">
     </div>
     {volist name='articles' id='article'}
     <div class="cell item" style="">
@@ -41,4 +44,47 @@
     </div>
     {/volist}
 </div>
+<script>
+    $("#deleteNode").on("click", function () {
+        $.ajax({
+            url: "/index/collection/deleteNode",
+            method: "post",
+            data: {
+                "categoryId": $("#categoryId").val(),
+            },
+            success: function (data) {
+                if (data.status == "error") {
+                    // 更新失败
+                    alert(data.message);
+                } else if (data.status == "success") {
+                    // 更新成成功
+                    window.location.href = "/go/{$category.id}";
+                } else {
+                    alert("未知错误");
+                }
+            }
+        });
+    });
+    $("#addNode").on("click", function () {
+        $.ajax({
+            url: "/index/collection/addNode",
+            method: "post",
+            data: {
+                "categoryId": $("#categoryId").val(),
+            },
+            success: function (data) {
+                if (data.status == "error") {
+                    // 更新失败
+                    alert(data.message);
+                } else if (data.status == "success") {
+                    // 更新成成功
+                    window.location.href = "/go/{$category.id}";
+                } else {
+                    alert("未知错误");
+                }
+            }
+        });
+    });
+</script>
 {/block}
+

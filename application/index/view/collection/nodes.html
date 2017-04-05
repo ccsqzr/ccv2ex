@@ -3,19 +3,19 @@
 {block name="main"}
 <div class="box">
     <div class="header"><a href="/">V2EX</a> <span class="chevron">&nbsp;›&nbsp;</span> 我收藏的节点
-        <div class="fr f12"><span class="snow">节点总数&nbsp;</span> <strong class="gray">{$collectionCount}</strong></div>
+        <div class="fr f12"><span class="snow">节点总数&nbsp;</span> <strong class="gray">{$categoryCount}</strong></div>
     </div>
-    {volist name='collections' id='collection'}
+    {volist name='$categories' id='category'}
     <div style="text-align: left; background-color: #f9f9f9;" id="MyNodes" class="ui-sortable"><a class="grid_item"
-                                                                                                  href="/go/{$collection.category.id}"
+                                                                                                  href="/go/{$category.categoryId}"
                                                                                                   id="n_114651">
         <div style="display: table; padding: 20px 0px 20px 0px; width: 100%; text-align: center; font-size: 14px;"><img
                 src="//v2ex.assets.uxengine.net/navatar/c74d/97b0/16_xxlarge.png?m=1490423426" border="0"
                 align="default" width="73">
             <div class="sep10"></div>
-            {$collection.category.name}
+            {$category.name}
             <div class="sep5"></div>
-            <span class="fade f12"><li class="fa fa-comments"></li> 21536</span></div>
+            <span class="fade f12"><li class="fa fa-comments"></li> ??</span></div>
     </a></div>
     {/volist}
 

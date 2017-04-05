@@ -1,0 +1,161 @@
+{extend name="layout/layout" /}
+{block name="title"}v2ex -我的特别关注{/block}
+{block name="main"}
+<div class="box">
+    <div class="header"><a href="/">V2EX</a> <span class="chevron">&nbsp;›&nbsp;</span> 我关注的人的最新主题
+        <div class="fr f12"><span class="snow">主题总数&nbsp;</span> <strong class="gray">{$articleCount}</strong></div>
+    </div>
+
+    <div class="cell">
+        <table cellpadding="0" cellspacing="0" border="0" width="100%">
+            <tbody>
+            <tr>
+                <td width="92%" align="left"><a href="/my/following?p=1" class="page_current">1</a> &nbsp;<a
+                        href="/my/following?p=2" class="page_normal">2</a> &nbsp;<a href="/my/following?p=3"
+                                                                                    class="page_normal">3</a> &nbsp;<a
+                        href="/my/following?p=4" class="page_normal">4</a> &nbsp;<a href="/my/following?p=5"
+                                                                                    class="page_normal">5</a> &nbsp;<a
+                        href="/my/following?p=6" class="page_normal">6</a> &nbsp;<a href="/my/following?p=7"
+                                                                                    class="page_normal">7</a> &nbsp;<a
+                        href="/my/following?p=8" class="page_normal">8</a> &nbsp;<a href="/my/following?p=9"
+                                                                                    class="page_normal">9</a> &nbsp;<a
+                        href="/my/following?p=10" class="page_normal">10</a><span class="fade"> ... </span><a
+                        href="/my/following?p=318" class="page_normal">318</a> &nbsp; <input type="number"
+                                                                                             class="page_input"
+                                                                                             autocomplete="off"
+                                                                                             value="1" min="1" max="318"
+                                                                                             onkeydown="if (event.keyCode == 13)
+                    location.href = '/my/following?p=' + this.value"></td>
+                <td width="8%" align="right">
+                    <table cellpadding="0" cellspacing="0" border="0" width="100%">
+                        <style type="text/css">
+                            .disable_now {
+                                color: #ccc !important;
+                                background-color: #fff !important;
+                            }
+
+                            .hover_now {
+                                cursor: pointer;
+                                color: #333 !important;
+                                background-color: #f9f9f9 !important;
+                                text-shadow: 0px 1px 0px #fff !important;
+                            }
+
+                            .active_now {
+                                background-color: #e2e2e2 !important;
+                            }
+                        </style>
+                        <tbody>
+                        <tr>
+                            <td width="50%" align="center" class="super normal button disable_now"
+                                style="border-right: none; border-top-right-radius: 0px; border-bottom-right-radius: 0px;">
+                                ❮
+                            </td>
+                            <td width="50%" align="center" class="super normal_page_right button"
+                                style="border-top-left-radius: 0px; border-bottom-left-radius: 0px;"
+                                onclick="location.href='/my/following?p=2';"
+                                onmouseover="$(this).addClass('hover_now');"
+                                onmousedown="$(this).addClass('active_now');"
+                                onmouseleave="$(this).removeClass('hover_now'); $(this).removeClass('active_now');"
+                                title="下一页">❯
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="cell item" style="">
+        {volist name='articles' id='article'}
+        <table cellpadding="0" cellspacing="0" border="0" width="100%">
+            <tbody>
+            <tr>
+
+                <td width="48" valign="top" align="center"><a href="/member/{$article.username}"><img
+                        src="{$article.avatar}" class="avatar" border="0" align="default"></a></td>
+                <td width="10"></td>
+
+                <td width="auto" valign="middle"><span class="item_title"><a href="/t/{$article.articleId}">{$article.articleTitle}</a></span>
+                    <div class="sep5"></div>
+                    <span class="small fade"><div class="votes"></div><a class="node" href="/go/{$article.categoryId}">{$article.categoryName}</a> &nbsp;•&nbsp; <strong><a
+                            href="/member/{$article.username}">{$article.username}</a></strong> &nbsp;•&nbsp; {$article.create_date} &nbsp;•&nbsp; 最后回复来自 <strong><a
+                            href="/member/{$article.lastReplyUsername}">{$article.lastReplyUsername}</a></strong></span>
+                </td>
+                <td width="70" align="right" valign="middle">
+
+                    <a href="#" class="count_livid">{$article.comment}</a>
+
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        {/volist}
+    </div>
+
+    <div class="cell">
+        <table cellpadding="0" cellspacing="0" border="0" width="100%">
+            <tbody>
+            <tr>
+                <td width="92%" align="left"><a href="/my/following?p=1" class="page_current">1</a> &nbsp;<a
+                        href="/my/following?p=2" class="page_normal">2</a> &nbsp;<a href="/my/following?p=3"
+                                                                                    class="page_normal">3</a> &nbsp;<a
+                        href="/my/following?p=4" class="page_normal">4</a> &nbsp;<a href="/my/following?p=5"
+                                                                                    class="page_normal">5</a> &nbsp;<a
+                        href="/my/following?p=6" class="page_normal">6</a> &nbsp;<a href="/my/following?p=7"
+                                                                                    class="page_normal">7</a> &nbsp;<a
+                        href="/my/following?p=8" class="page_normal">8</a> &nbsp;<a href="/my/following?p=9"
+                                                                                    class="page_normal">9</a> &nbsp;<a
+                        href="/my/following?p=10" class="page_normal">10</a><span class="fade"> ... </span><a
+                        href="/my/following?p=318" class="page_normal">318</a> &nbsp; <input type="number"
+                                                                                             class="page_input"
+                                                                                             autocomplete="off"
+                                                                                             value="1" min="1" max="318"
+                                                                                             onkeydown="if (event.keyCode == 13)
+                    location.href = '/my/following?p=' + this.value"></td>
+                <td width="8%" align="right">
+                    <table cellpadding="0" cellspacing="0" border="0" width="100%">
+                        <style type="text/css">
+                            .disable_now {
+                                color: #ccc !important;
+                                background-color: #fff !important;
+                            }
+
+                            .hover_now {
+                                cursor: pointer;
+                                color: #333 !important;
+                                background-color: #f9f9f9 !important;
+                                text-shadow: 0px 1px 0px #fff !important;
+                            }
+
+                            .active_now {
+                                background-color: #e2e2e2 !important;
+                            }
+                        </style>
+                        <tbody>
+                        <tr>
+                            <td width="50%" align="center" class="super normal button disable_now"
+                                style="border-right: none; border-top-right-radius: 0px; border-bottom-right-radius: 0px;">
+                                ❮
+                            </td>
+                            <td width="50%" align="center" class="super normal_page_right button"
+                                style="border-top-left-radius: 0px; border-bottom-left-radius: 0px;"
+                                onclick="location.href='/my/following?p=2';"
+                                onmouseover="$(this).addClass('hover_now');"
+                                onmousedown="$(this).addClass('active_now');"
+                                onmouseleave="$(this).removeClass('hover_now'); $(this).removeClass('active_now');"
+                                title="下一页">❯
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+</div>
+{/block}

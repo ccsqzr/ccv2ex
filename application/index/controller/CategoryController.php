@@ -26,7 +26,7 @@ class CategoryController extends BaseController
         $this->assign("articles", $articles);
         $this->assign('count', count($articles));
         $this->assign("category", Category::get($categoryId));
-        $this->assign("collections", $collections);
+        //$this->assign("collections", $collections);
         return $this->fetch();
     }
 }
